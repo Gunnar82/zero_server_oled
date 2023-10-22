@@ -18,3 +18,20 @@ https://www.raspberryconnect.com/projects/65-raspberrypi-hotspot-accesspoints/15
 USBmount installieren und einrichten
 
 https://www.dgebhardt.de/raspi-projects/projects/usbmount.html
+
+
+nginx config:
+
+server {
+        listen 8080;
+#       listen [::]:80;
+#
+        server_name local.server;
+#
+        root /media/usb;
+#       index index.html;
+#
+#       location / {
+#               try_files $uri $uri/ =404;
+#       }
+}
