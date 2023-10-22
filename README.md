@@ -3,7 +3,7 @@ Minimal Server for Rasperry Pi Server - with OLED
 
 Requirements:
 
-Hardware: Raspberry Pi: zero WH, zero 2 WH, Pi >= 3B
+Hardware: Raspberry Pi ( zero WH | zero 2 WH | >= 3B)
 
 Raspberry Pis OS: bullseye
 Webserver: nginx
