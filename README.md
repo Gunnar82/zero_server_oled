@@ -9,7 +9,7 @@ Raspberry Pis OS: bullseye
 
 Webserver: nginx
 ```
-sudo apt-get install hotsapd dnsmasq nginx usbmount mc
+sudo apt-get install hotsapd dnsmasq nginx usbmount mc libnginx-mod-http-fancyindex 
 ```
 ## Prerequisites
 
