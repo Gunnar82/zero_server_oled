@@ -112,6 +112,7 @@ server {
 sudo a2enmod ssl
 sudo a2enmod proxy
 sudo a2enmod proxy_http
+#Following optinal if cluster
 sudo a2enmod proxy_balancer
 sudo a2enmod proxy_hcheck
 sudo a2enmod lbmethod_byrequests
@@ -140,12 +141,13 @@ Listen 127.0.0.1:8080
 ```
 #/etc/apache2/sites-available/default-ssl.conf
 <IfModule mod_ssl.c>
+        #if cluster
         ProxyHCExpr ok234 {%{REQUEST_STATUS} =~ /^[234]/}
         <Proxy balancer://hotcluster>
             BalancerMember http://182.168.8.21:80 timeout=2 hcmethod=HEAD hcexpr=ok234
             BalancerMember http://localhost:8080 status=+H
         </Proxy>
-
+        # end cluster
         <VirtualHost _default_:443>
                 ServerAdmin webmaster@localhost
 
@@ -169,15 +171,22 @@ Listen 127.0.0.1:8080
                 SSLVerifyDepth  1
 
                 #SSLOptions +FakeBasicAuth +ExportCertData +StrictRequire
+                #if cluster undcomment
+                #ProxyPass / balancer://hotcluster/
+                #ProxyPassReverse / balancer://hotcluster/
+                #end cluster
 
-                ProxyPass / balancer://hotcluster/
-                ProxyPassReverse / balancer://hotcluster/
+                # if standalone uncomment
+                #ProxyPass / http://127.0.0.1:8080/
+                #ProxyPassReverse / http://127.0.0.1:8080/
+                #end standalone
 
+                #if cluster
                 <Location "/balancer-manager">
                     SetHandler balancer-manager
                     Require host localhost
                 </Location>
-
+                #end cluster
         </VirtualHost>
 </IfModule>
 
