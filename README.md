@@ -50,10 +50,10 @@ local.server        192.168.50.5
 https://docs.nginx.com/nginx/admin-guide/security-controls/securing-http-traffic-upstream/
 
 ### Configure nginx
+
 ```
 #File: /etc/nginx/sites-available/default
 
-```
 upstream backend {
     #server 192.168.8.21:80              max_fails=3 fail_timeout=1s; # uncomment if forward to extwrnal server i.e. NAS
     server 127.0.0.1:8080 #backup;        # uncomment if use local server as backup
