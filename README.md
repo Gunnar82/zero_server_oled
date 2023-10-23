@@ -11,28 +11,31 @@ Webserver: nginx
 ```
 sudo apt-get install hotsapd dnsmasq nginx usbmount
 ```
+## Prerequi...
 
-## Install autohotspotN:
+### Install autohotspotN:
 
 https://www.raspberryconnect.com/projects/65-raspberrypi-hotspot-accesspoints/157-raspberry-pi-auto-wifi-hotspot-switch-internet
 
-## USBmount installieren und einrichten
+### USBmount installieren und einrichten
 
 https://www.dgebhardt.de/raspi-projects/projects/usbmount.html
 
-## Read Only Root-FS
+### Read Only Root-FS
 https://yagrebu.net/unix/rpi-overlay.md
 
-## Additional Information
+### Additional Information
 https://raspberrypi.stackexchange.com/questions/104722/kernel-types-in-raspbian-10-buster
 
-## Disable Logging
+## Setting up
+
+### Disable Logging
 ```
 sudo systemctl stop rsyslog
 sudo systemctl disable rsyslog
 ```
 
-## Configure nginx
+### Configure nginx
 ```
 #File: /etc/nginx/sites-available/default
 
