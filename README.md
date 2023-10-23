@@ -139,6 +139,48 @@ Listen 127.0.0.1:8080
 
 ```
 #/etc/apache2/sites-available/default-ssl.conf
+<IfModule mod_ssl.c>
+        ProxyHCExpr ok234 {%{REQUEST_STATUS} =~ /^[234]/}
+        <Proxy balancer://hotcluster>
+            BalancerMember http://182.168.8.21:80 timeout=2 hcmethod=HEAD hcexpr=ok234
+            BalancerMember http://localhost:8080 status=+H
+        </Proxy>
+
+        <VirtualHost _default_:443>
+                ServerAdmin webmaster@localhost
+
+                ServerName local.server
+
+                DocumentRoot /var/www/html
+
+                LogLevel emerg ssl:emerg
+
+                SSLEngine on
+
+                SSLCertificateFile      /etc/ssl/certs/server.pem
+                SSLCertificateKeyFile /etc/ssl/private/server.key
+
+                SSLCACertificateFile /etc/ssl/certs/MyOwnCA.pem
+
+                SSLCACertificatePath /etc/ssl/certs/
+                SSLCipherSuite AES+HIGH:3DES+HIGH:RC4:!MD5:!EXPORT:!SSLv2:!aNULL:!eNULL:!KRB5
+
+                SSLVerifyClient require
+                SSLVerifyDepth  1
+
+                #SSLOptions +FakeBasicAuth +ExportCertData +StrictRequire
+
+                ProxyPass / balancer://hotcluster/
+                ProxyPassReverse / balancer://hotcluster/
+
+                <Location "/balancer-manager">
+                    SetHandler balancer-manager
+                    Require host localhost
+                </Location>
+
+        </VirtualHost>
+</IfModule>
+
 
 ```
 
