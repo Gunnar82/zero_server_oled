@@ -141,12 +141,12 @@ Listen 127.0.0.1:8080
 ```
 #/etc/apache2/sites-available/default-ssl.conf
 <IfModule mod_ssl.c>
-        #if cluster
-        ProxyHCExpr ok234 {%{REQUEST_STATUS} =~ /^[234]/}
-        <Proxy balancer://hotcluster>
-            BalancerMember http://182.168.8.21:80 timeout=2 hcmethod=HEAD hcexpr=ok234
-            BalancerMember http://localhost:8080 status=+H
-        </Proxy>
+        #if cluster uncomment
+        #ProxyHCExpr ok234 {%{REQUEST_STATUS} =~ /^[234]/}
+        #<Proxy balancer://hotcluster>
+        #    BalancerMember http://182.168.8.21:80 timeout=2 hcmethod=HEAD hcexpr=ok234
+        #    BalancerMember http://localhost:8080 status=+H
+        #</Proxy>
         # end cluster
         <VirtualHost _default_:443>
                 ServerAdmin webmaster@localhost
