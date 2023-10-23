@@ -83,6 +83,7 @@ server {
 }
 
 ```
+```
 #File: /etc/nginx/sites-available/local_server
 
 server {
