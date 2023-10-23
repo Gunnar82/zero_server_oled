@@ -19,7 +19,7 @@ USBmount installieren und einrichten
 
 https://www.dgebhardt.de/raspi-projects/projects/usbmount.html
 
-
+```
 nginx config:
 
 server {
@@ -35,3 +35,4 @@ server {
 #               try_files $uri $uri/ =404;
 #       }
 }
+```
