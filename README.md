@@ -68,8 +68,6 @@ server {
         listen 443 ssl;
         root /var/www/html;
         location / {
-                # First attempt to serve request as file, then
-                # as directory, then fall back to displaying a 404.
                 proxy_pass http://backend;
                 proxy_http_version 1.1;
                 proxy_set_header Connection "";
@@ -97,9 +95,9 @@ server {
         fancyindex_time_format "%Y-%m-%d %H:%M";
         fancyindex_ignore "folder.conf";
 
-#
-#       location / {
-#               try_files $uri $uri/ =404;
-#       }
+
+       location / {
+               try_files $uri $uri/ =404;
+       }
 }
 ```
