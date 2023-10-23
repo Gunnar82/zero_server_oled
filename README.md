@@ -57,13 +57,11 @@ local.server        192.168.50.5
 #File: /etc/nginx/sites-available/local_server
 
 server {
-        listen 8080;
-#       listen [::]:80;
-#
+        listen 127.0.0.1:8080;
+
         server_name local.server;
 #
         root /media/usb;
-#       index index.html;
 #
 #       location / {
 #               try_files $uri $uri/ =404;
