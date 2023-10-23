@@ -1,7 +1,7 @@
 # zero_server_oled
 Minimal Server for Rasperry Pi Server - with OLED 
 
-Requirements:
+##Requirements:
 
 Hardware: Raspberry Pi ( zero WH | zero 2 WH | >= 3B)
 
@@ -11,16 +11,28 @@ Webserver: nginx
 
 Packages: dnsmasq, nginx, usbmount
 
-Install autohotspotN from:
+##Install autohotspotN:
 
 https://www.raspberryconnect.com/projects/65-raspberrypi-hotspot-accesspoints/157-raspberry-pi-auto-wifi-hotspot-switch-internet
 
-USBmount installieren und einrichten
+##USBmount installieren und einrichten
 
 https://www.dgebhardt.de/raspi-projects/projects/usbmount.html
 
+##Read Only Root-FS
+https://yagrebu.net/unix/rpi-overlay.md
+
+##Additional Information
+https://raspberrypi.stackexchange.com/questions/104722/kernel-types-in-raspbian-10-buster
+
+#Disable Logging
 ```
-nginx config:
+sudo systemctl stop rsyslog
+sudo systemctl disable rsyslog
+```
+
+##Configure nginx
+```
 
 server {
         listen 8080;
