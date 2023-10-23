@@ -11,7 +11,7 @@ Webserver: nginx
 ```
 sudo apt-get install hotsapd dnsmasq nginx usbmount mc
 ```
-## Prerequi...
+## Prerequisites
 
 ### Install autohotspotN:
 
@@ -46,12 +46,38 @@ local.server        192.168.50.5
 
 ```
 
+### Creating Certs
+https://docs.nginx.com/nginx/admin-guide/security-controls/securing-http-traffic-upstream/
 
 ### Configure nginx
 ```
 #File: /etc/nginx/sites-available/default
 
 ```
+upstream backend {
+    #server 192.168.8.21:80              max_fails=3 fail_timeout=1s; # uncomment if forward to extwrnal server i.e. NAS
+    server 127.0.0.1:8080 #backup;        # uncomment if use local server as backup
+}
+
+server {
+        listen 443 ssl;
+        root /var/www/html;
+        location / {
+                # First attempt to serve request as file, then
+                # as directory, then fall back to displaying a 404.
+                proxy_pass http://backend;
+                proxy_http_version 1.1;
+                proxy_set_header Connection "";
+
+        }
+        
+        index index.html index.htm index.nginx-debian.html;
+
+        ssl_certificate     /etc/ssl/certs/server.pem;
+        ssl_certificate_key /etc/ssl/private/server.key;
+        ssl_client_certificate /etc/ssl/certs/MyOwnCA.pem;
+        ssl_verify_client      on;
+}
 
 ```
 #File: /etc/nginx/sites-available/local_server
@@ -62,6 +88,10 @@ server {
         server_name local.server;
 #
         root /media/usb;
+        fancyindex on;
+        fancyindex_time_format "%Y-%m-%d %H:%M";
+        fancyindex_ignore "folder.conf";
+
 #
 #       location / {
 #               try_files $uri $uri/ =404;
