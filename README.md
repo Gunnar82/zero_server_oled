@@ -137,6 +137,7 @@ Listen 127.0.0.1:8080
 </Directory>
 ```
 
+Please see comments. You need to uncomment standalone or cluster config.
 
 ```
 #/etc/apache2/sites-available/default-ssl.conf
