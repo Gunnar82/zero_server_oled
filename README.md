@@ -9,7 +9,11 @@ Raspberry Pis OS: bullseye
 
 Webserver: nginx
 ```
-sudo apt-get install hotsapd dnsmasq nginx usbmount mc libnginx-mod-http-fancyindex 
+sudo apt-get install hotsapd dnsmasq usbmount mc
+
+sudo apt-get install nginx libnginx-mod-http-fancyindex
+or
+sudo apt-get install apache2
 ```
 ## Prerequisites
 
@@ -100,5 +104,45 @@ server {
                try_files $uri $uri/ =404;
        }
 }
+```
+
+### or configure apache2
+
+```
+sudo a2enmod ssl
+sudo a2enmod proxy
+sudo a2enmod proxy_http
+sudo a2enmod proxy_balancer
+sudo a2enmod proxy_hcheck
+sudo a2enmod lbmethod_byrequests
+
+sudo a2ensite default-ssl
+```
+```
+#/etc/apache2/ports.conf
+Listen 127.0.0.1:8080
+
+<IfModule ssl_module>
+        Listen 443
+</IfModule>
+```
+```
+
+#/etc/apache2/apache2.conf
+<Directory /media/>
+        Options Indexes FollowSymLinks
+        AllowOverride None
+        Require all granted
+</Directory>
+```
+
+
+```
+#/etc/apache2/sites-available/default-ssl.conf
+
+
+```
+#/etc/apache2/sites-available/default-ssl
+
 ```
 
