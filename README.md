@@ -9,7 +9,7 @@ Raspberry Pis OS: bullseye
 
 Webserver: nginx
 ```
-sudo apt-get install hotsapd dnsmasq nginx usbmount
+sudo apt-get install hotsapd dnsmasq nginx usbmount mc
 ```
 ## Prerequi...
 
@@ -34,6 +34,18 @@ https://raspberrypi.stackexchange.com/questions/104722/kernel-types-in-raspbian-
 sudo systemctl stop rsyslog
 sudo systemctl disable rsyslog
 ```
+
+### Configure hosts File
+
+```
+sudo mcedit /etc/hosts
+
+# add at the bottom
+
+local.server        192.168.50.5
+
+```
+
 
 ### Configure nginx
 ```
