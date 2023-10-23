@@ -89,12 +89,11 @@ server {
         listen 127.0.0.1:8080;
 
         server_name local.server;
-#
+
         root /media/usb;
         fancyindex on;
         fancyindex_time_format "%Y-%m-%d %H:%M";
         fancyindex_ignore "folder.conf";
-
 
        location / {
                try_files $uri $uri/ =404;
