@@ -1,6 +1,11 @@
 # zero_server_oled
 Minimal Server for Rasperry Pi Server - with OLED 
 
+## Informational:
+
+Using for my oled_menu_phoniebox Project. You can easily share your NAS folder for accessing for mediacontent remotly.
+Requires Port-Forwarding of Port 443 on your Router to your server and static ip or ddns account.
+
 ## Requirements:
 
 Hardware: Raspberry Pi ( zero WH | zero 2 WH | >= 3B)
