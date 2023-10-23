@@ -3,8 +3,12 @@ Minimal Server for Rasperry Pi Server - with OLED
 
 ## Informational:
 
-Using for my oled_menu_phoniebox Project. You can easily share your NAS folder for accessing for mediacontent remotly.
-Requires Port-Forwarding of Port 443 on your Router to your server and static ip or ddns account.
+Using for my oled_menu_phoniebox Project.
+
+You can easily share your NAS folder for accessing for mediacontent remotly.
+Requires port-forwarding of port 443 on your router to your server and static ip or ddns account.
+
+You can also conect to hostapds wifi and download or play media directly.
 
 ## Requirements:
 
