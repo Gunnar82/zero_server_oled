@@ -21,8 +21,6 @@ https://www.raspberryconnect.com/projects/65-raspberrypi-hotspot-accesspoints/15
 https://www.dgebhardt.de/raspi-projects/projects/usbmount.html
 ```
 #change following
-MOUNTPOINTS="/media/website /media/usb1 /media/usb2 /media/usb3
-             /media/usb4 /media/usb5 /media/usb6 /media/usb7"
 
 MOUNTOPTIONS="ro,sync,noexec,nodev,noatime,nodiratime,iocharset=utf8"
 ```
