@@ -6,7 +6,7 @@ import settings, colors, symbols
 
 from luma.core.render import canvas
 from PIL import ImageFont
-import os
+import os,subprocess
 import RPi.GPIO as GPIO
 import locale
 import time
@@ -35,12 +35,10 @@ class Idle(WindowBase):
 
     def activate(self):
         self.active = True
-        print ("activate")
         self.loop.create_task(self.get_infos())
 
 
     def deactivate(self):
-        print ("deactivate")
         self.active = False
 
     def render(self):
@@ -50,8 +48,8 @@ class Idle(WindowBase):
 
             #####IDLE RENDER
             draw.text((1, settings.DISPLAY_HEIGHT - 2*settings.FONT_HEIGHT_NORMAL ), self.line1, font=Idle.font, fill="white")
-            draw.text((1, settings.DISPLAY_HEIGHT - 3*settings.FONT_HEIGHT_NORMAL ), "line2", font=Idle.font, fill="white")
-            draw.text((1, settings.DISPLAY_HEIGHT - 4*settings.FONT_HEIGHT_NORMAL ), "line3", font=Idle.font, fill="white")
+            draw.text((1, settings.DISPLAY_HEIGHT - 3*settings.FONT_HEIGHT_NORMAL ), self.line2, font=Idle.font, fill="white")
+            draw.text((1, settings.DISPLAY_HEIGHT - 4*settings.FONT_HEIGHT_NORMAL ), self.line3, font=Idle.font, fill="white")
 
 
 
@@ -66,11 +64,21 @@ class Idle(WindowBase):
     async def get_infos(self):
         while self.loop.is_running and self.active:
             ip_address = self.get_local_ip()
-
-
+            wifi = self.get_wifiname()
+            hostapd = self.get_hostapd_status()
+            self.line3 = hostapd
+            self.line2 = "Wifi: %s" % (wifi)
             self.line1 = "IP: %s" % (ip_address)
-            print ("loop")
+
             await asyncio.sleep(5)
+
+    def get_hostapd_status(self):
+        try:
+            output = subprocess.check_output(['sudo', 'systemctl', 'is-active', 'hostapd'])
+            return str(output).strip()
+        except Exception as e:
+            return "n/a"
+
 
     def get_local_ip(self):
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -84,3 +92,9 @@ class Idle(WindowBase):
             s.close()
         return IP
  
+    def get_wifiname(self):
+        try:
+            output = subprocess.check_output(['sudo', 'iwgetid'])
+            return str(output).split('"')[1]
+        except Exception as e:
+            return "n/a"
