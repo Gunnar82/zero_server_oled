@@ -29,7 +29,7 @@ class Idle(WindowBase):
         self.loop = loop
         self.changerender = True
         self.window_on_back = "none"
-        self.timeout = False
+        self.timeoutwindow = "none"
         self.line1 = ""
 
 
@@ -67,7 +67,7 @@ class Idle(WindowBase):
             wifi = self.get_wifiname()
             hostapd = self.get_hostapd_status()
 
-            self.line3 = "Hotpot : %s " % (hostapd)
+            self.line3 = "Hotspot : %s " % (hostapd)
             self.line2 = "Wifi: %s" % (wifi)
             self.line1 = "IP: %s" % (ip_address)
 

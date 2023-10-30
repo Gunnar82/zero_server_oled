@@ -13,8 +13,12 @@ class Mainmenu(MenuBase):
         super().__init__(windowmanager,loop,title)
         self.counter = 0
         self.descr.append([ "Ausschaltmenü", "\uf011"])
+        self.descr.append([ "hostapd.conf", "\uf09e"])
+
         self.window_on_back = "idle"
 
     async def push_handler(self):
         if self.counter == 1:
             self.windowmanager.set_window("shutdownmenu")
+        elif self.counter == 2:
+            self.windowmanager.set_window("hostapd")
