@@ -31,6 +31,7 @@ class WindowManager():
 
     def set_window(self, windowid):
         if windowid in self.windows:
+            print ("found: %s " % (windowid))
             try:
                 self.activewindow.deactivate()
             except (NotImplementedError, AttributeError):

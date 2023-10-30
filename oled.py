@@ -83,7 +83,7 @@ def main():
     shutdownscreen = windows.shutdownmenu.Shutdownmenu(windowmanager, loop, "Powermenü")
     loadedwins.append(idlescreen)
     loadedwins.append(windows.mainmenu.Mainmenu(windowmanager,loop,"Hauptmenü"))
-    loadedwins.append(windows.ende.Ende)
+    loadedwins.append(windows.ende.Ende(windowmanager,"ende"))
     loadedwins.append(shutdownscreen)
 
     loadedwins.append(windows.start.Start(windowmanager))

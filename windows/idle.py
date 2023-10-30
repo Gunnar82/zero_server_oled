@@ -66,7 +66,8 @@ class Idle(WindowBase):
             ip_address = self.get_local_ip()
             wifi = self.get_wifiname()
             hostapd = self.get_hostapd_status()
-            self.line3 = hostapd
+
+            self.line3 = "Hotpot : %s " % (hostapd)
             self.line2 = "Wifi: %s" % (wifi)
             self.line1 = "IP: %s" % (ip_address)
 
@@ -75,7 +76,7 @@ class Idle(WindowBase):
     def get_hostapd_status(self):
         try:
             output = subprocess.check_output(['sudo', 'systemctl', 'is-active', 'hostapd'])
-            return str(output).strip()
+            return str(output).split("'")[1][:-2]
         except Exception as e:
             return "n/a"
 

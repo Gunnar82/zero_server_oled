@@ -15,6 +15,7 @@ class Shutdownmenu(MenuBase):
         super().__init__(windowmanager,loop,title)
         self.descr.append(["Shutdown","\uf011"])
         self.descr.append(["Reboot","\uf0e2"])
+        self.descr.append(["beenden","\uf0e2"])
 
     async def push_handler(self):
         if self.counter == 1:
@@ -22,4 +23,7 @@ class Shutdownmenu(MenuBase):
             self.loop.stop()
         elif self.counter == 2:
             settings.shutdown_reason = settings.SR3
+            self.loop.stop()
+        elif self.counter == 3:
+            settings.shutdown_reason = settings.SR1
             self.loop.stop()
