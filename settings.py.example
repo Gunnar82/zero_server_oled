@@ -1,0 +1,54 @@
+""" Software settings """
+
+# INPUT: possible value
+# gpicase : GPI Case 1 
+# keyboard : Keyboard # BETA
+# powercontroller : Hifiberry Powercontroller
+# keypad4x4 : KEYPAD 4x4 I2C + MCP23017
+# rotaryenc : Rotary ecoder
+# pirateaudio : Piratre Audio HAT
+# x728 : X728 V2.1
+# statusled : Status LED
+#
+# example:
+# INPUTS = ["keypad4x4", "statusled", "x728"]
+INPUTS=["waveshare"]
+
+ufw_services_allow = ["ssh","http","microsoft-ds"]
+
+LOGLEVEL=1
+
+###DISPLAY_SETTINGS i2c
+DISPLAY_TYPE = "spi" # or "i2c"
+DISPLAY_DRIVER = "sh1106"
+
+####CONTROL
+
+MENU_TIMEOUT = 20
+START_TIMEOUT = 2
+
+CONTRAST_TIMEOUT = 50 #MENU_TIMEOUT
+CONTRAST_RENDERTIME = 3
+BUSY_RENDERTIME = 3
+DARK_TIMEOUT = 60
+DARK_RENDERTIME = 10 #sekunden
+
+CONTRAST_FULL = 245
+CONTRAST_DARK = 64
+CONTRAST_BLACK = 20
+
+DISABLE_DISPLAY = True
+
+#Font files (TrueType)
+FONT_ICONS = "fonts/fontawesome.otf"
+FONT_TEXT = "fonts/arial.ttf"
+FONT_CLOCK = "fonts/calibri.ttf"
+
+
+SR1 = "beendet"
+SR2 = "heruntergefahren"
+SR3 = "neugestartet"
+
+PLEASE_WAIT = "Bitte Warten..."
+
+callback_active = False
