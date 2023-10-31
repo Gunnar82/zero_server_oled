@@ -65,9 +65,9 @@ class Idle(WindowBase):
         while self.loop.is_running and self.active:
             ip_address = self.get_local_ip()
             wifi = self.get_wifiname()
-            hostapd = self.get_hostapd_status()
+            hostapd, clients = self.get_hostapd_status()
 
-            self.line3 = "Hotspot : %s " % (hostapd)
+            self.line3 = "Hotspot : %s, Clients: %d " % (hostapd, clients)
             self.line2 = "Wifi: %s" % (wifi)
             self.line1 = "IP: %s" % (ip_address)
 
@@ -75,10 +75,17 @@ class Idle(WindowBase):
 
     def get_hostapd_status(self):
         try:
-            output = subprocess.check_output(['sudo', 'systemctl', 'is-active', 'hostapd'])
-            return str(output).split("'")[1][:-2]
+            status = subprocess.check_output(['sudo', 'systemctl', 'is-active', 'hostapd']).decode().strip()
         except Exception as e:
-            return "n/a"
+            status = "n/a"
+
+        try:
+            output = subprocess.check_output(['hostapd_cli', 'list_sta']).decode()
+
+            clients = (len(output.split('\n')) - 2 )
+        except Exception as e:
+            clients = -1
+        return status, clients
 
 
     def get_local_ip(self):
