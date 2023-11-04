@@ -14,6 +14,7 @@ class Mainmenu(MenuBase):
         self.counter = 0
         self.descr.append([ "Ausschaltmenü", "\uf011"])
         self.descr.append([ "hostapd.conf", "\uf09e"])
+        self.descr.append([ "system scripts", "\uf07c"])
 
         self.window_on_back = "idle"
 
@@ -22,3 +23,5 @@ class Mainmenu(MenuBase):
             self.windowmanager.set_window("shutdownmenu")
         elif self.counter == 2:
             self.windowmanager.set_window("hostapd")
+        elif self.counter == 3:
+            self.windowmanager.set_window("mountmenu")

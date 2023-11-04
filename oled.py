@@ -44,7 +44,7 @@ import windows.shutdownmenu
 import windows.start
 import windows.ende
 import windows.hostapd
-
+import windows.mount
 #Systemd exit
 def gracefulexit(signum, frame):
     sys.exit(0)
@@ -86,6 +86,7 @@ def main():
     loadedwins.append(windows.mainmenu.Mainmenu(windowmanager,loop,"Hauptmenü"))
     loadedwins.append(windows.ende.Ende(windowmanager,"ende"))
     loadedwins.append(windows.hostapd.Hostapd(windowmanager))
+    loadedwins.append(windows.mount.Mountmenu(windowmanager,loop,"mount"))
     loadedwins.append(shutdownscreen)
 
     loadedwins.append(windows.start.Start(windowmanager))
