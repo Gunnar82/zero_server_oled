@@ -20,7 +20,7 @@ class Mountmenu(MenuBase):
         self.descr.append(["umount nas", "\uf114"])
         self.descr.append(["link NAS", "\uf115"])
         self.descr.append(["link USB", "\uf115"])
-        self.descr.append(["start hostapd", "\uf115"])
+        self.descr.append(["start hostapd", "\uf012"])
         self.descr.append(["stop hostapd", "\uf115"])
 
 
