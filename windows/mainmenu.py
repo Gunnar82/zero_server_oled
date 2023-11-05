@@ -13,8 +13,8 @@ class Mainmenu(MenuBase):
         super().__init__(windowmanager,loop,title)
         self.counter = 0
         self.descr.append([ "Ausschaltmenü", "\uf011"])
-        self.descr.append([ "hostapd.conf", "\uf09e"])
-        self.descr.append([ "system scripts", "\uf07c"])
+        self.descr.append([ "hostapd.conf", "\uf0ca"])
+        self.descr.append([ "system scripts", "\uf013"])
 
         self.window_on_back = "idle"
 
